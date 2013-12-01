@@ -1,0 +1,35 @@
+<project>
+
+	<target name="clean">
+		<delete dir="build"/>
+		<delete dir="dist"/>
+	</target>
+	
+	<target name="build">
+		<mkdir dir="build"/>
+		<javac srcdir="src" destdir="build"/>
+	</target>
+	
+	<target name="package">
+		<mkdir dir="dist"/>
+		<jar destfile="dist/ConfLib.jar" basedir="build">
+			<manifest>
+				<attribute name="Main-Class" value="test.Test"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="all">
+		<delete dir="build"/>
+		<delete dir="dist"/>
+		<mkdir dir="build"/>
+		<javac srcdir="src" destdir="build"/>
+		<mkdir dir="dist"/>
+		<jar destfile="dist/ConfLib.jar" basedir="build">
+			<manifest>
+				<attribute name="Main-Class" value="test.Test"/>
+			</manifest>
+		</jar>
+	</target>
+
+</project>
