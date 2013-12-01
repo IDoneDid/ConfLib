@@ -1,3 +1,11 @@
 This is the configuration library, "ConfLib" provided under the Apache license courtesy of IDoneDid Productions.
 This software is provided with no warranty, but with best wishes.
 Please report any issues to "stingerbarb@gmail.com"
+
+Run "ant build" to compile the classes
+Run "ant package" to create a jar file
+Run "ant clean" to clean the working directory
+Run "ant all" to clean the working directory, compile classes, and create a jar file
+
+The generated jar file has test.Test as the main class.
+It also serves as a library should you choose to include this in a project.
