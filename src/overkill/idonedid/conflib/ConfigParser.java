@@ -35,36 +35,43 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("S:" + key + "=Default");
+			fe.write("S:" + key + "=Default\n");
 			fe.close();
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
+		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			if(line.contains("S:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("S"))
-				{
-					thing3 = thing2[1].split("=");
-					for(int c = 0; c < thing3.length; c++)
-					{
-						if(thing3[c].equalsIgnoreCase(key))
-						{
-							b.close();
-							return thing3[1];
-						}
-					}
-				}
+				line2 = line.replace("S:" + key + "=", "");
+				return line2;
 			}
 		}
 		b.close();
-		return "ConfLib.error.NoSuchVar";
+		return "Null";
+	}
+	
+	public static void addStr(String key, String value) throws Exception
+	{
+		if (conf == null)
+		{
+			conf = "config.cfg";
+		}
+		File f = new File(conf);
+		if(!f.exists())
+		{
+			f.createNewFile();
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
+			fe.write("S:" + key + "=" + value + "\n");
+			fe.close();
+		}
+		else
+		{
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf, true));
+			fe.write("S:" + key + "=" + value + "\n");
+			fe.close();
+		}
 	}
 	
 	public static boolean getBool(String key) throws Exception
@@ -78,39 +85,52 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("B:" + key + "=false");
+			fe.write("B:" + key + "=false\n");
 			fe.close();
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
+		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			String[] thing1;
-			String[] thing2;
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			if(line.contains("B:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("B"))
+				line2 = line.replace("B:" + key + "=", "");
+				if(line2.equalsIgnoreCase("true"))
 				{
-					String[] thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						b.close();
-						if(thing3[1].equalsIgnoreCase("true"))
-						{
-							return true;
-						}
-						else
-						{
-							return false;
-						}
-					}
+					b.close();
+					return true;
+				}
+				else
+				{
+					b.close();
+					return false;
 				}
 			}
 		}
 		b.close();
 		return false;
+	}
+	
+	public static void addBool(String key, boolean value) throws Exception
+	{
+		if (conf == null)
+		{
+			conf = "config.cfg";
+		}
+		File f = new File(conf);
+		if(!f.exists())
+		{
+			f.createNewFile();
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
+			fe.write("B:" + key + "=" + value + "\n");
+			fe.close();
+		}
+		else
+		{
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf, true));
+			fe.write("B:" + key + "=" + value + "\n");
+			fe.close();
+		}
 	}
 	
 	public static int getInt(String key) throws Exception
@@ -124,32 +144,43 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("I:" + key + "=0");
+			fe.write("I:" + key + "=0\n");
 			fe.close();
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
+		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			String[] thing1;
-			String[] thing2;
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			if(line.contains("I:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("I"))
-				{
-					String[] thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						b.close();
-						return Integer.parseInt(thing3[1]);
-					}
-				}
+				line2 = line.replace("I:" + key + "=", "");
+				return Integer.parseInt(line2);
 			}
 		}
 		b.close();
 		return 0;
+	}
+	
+	public static void addInt(String key, int value) throws Exception
+	{
+		if (conf == null)
+		{
+			conf = "config.cfg";
+		}
+		File f = new File(conf);
+		if(!f.exists())
+		{
+			f.createNewFile();
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
+			fe.write("I:" + key + "=" + value + "\n");
+			fe.close();
+		}
+		else
+		{
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf, true));
+			fe.write("I:" + key + "=" + value + "\n");
+			fe.close();
+		}
 	}
 	
 	public static double getDouble(String key) throws Exception
@@ -163,32 +194,43 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("D:" + key + "=0.0");
+			fe.write("D:" + key + "=0.0\n");
 			fe.close();
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
+		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			String[] thing1;
-			String[] thing2;
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			if(line.contains("D:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("D"))
-				{
-					String[] thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						b.close();
-						return Double.parseDouble(thing3[1]);
-					}
-				}
+				line2 = line.replace("D:" + key + "=", "");
+				return Double.parseDouble(line2);
 			}
 		}
 		b.close();
-		return 0;
+		return 0.0;
+	}
+	
+	public static void addDouble(String key, double value) throws Exception
+	{
+		if (conf == null)
+		{
+			conf = "config.cfg";
+		}
+		File f = new File(conf);
+		if(!f.exists())
+		{
+			f.createNewFile();
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
+			fe.write("D:" + key + "=" + value + "\n");
+			fe.close();
+		}
+		else
+		{
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf, true));
+			fe.write("D:" + key + "=" + value + "\n");
+			fe.close();
+		}
 	}
 	
 	public static float getFloat(String key) throws Exception
@@ -202,36 +244,24 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("F:" + key + "=0f");
+			fe.write("F:" + key + "=0.0f\n");
 			fe.close();
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
+		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			String[] thing1;
-			String[] thing2;
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			if(line.contains("F:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("F"))
-				{
-					String[] thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						b.close();
-						return Float.parseFloat(thing3[1]);
-					}
-				}
+				line2 = line.replace("F:" + key + "=", "");
+				return Float.parseFloat(line2);
 			}
 		}
 		b.close();
-		return 0;
+		return 0.0f;
 	}
 	
-	@Deprecated
-	public static String get(String toget) throws Exception
+	public static void addInt(String key, float value) throws Exception
 	{
 		if (conf == null)
 		{
@@ -242,27 +272,15 @@ public class ConfigParser
 		{
 			f.createNewFile();
 			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write(toget + ":Default");
+			fe.write("F:" + key + "=" + value + "\n");
 			fe.close();
 		}
-		BufferedReader b = new BufferedReader(new FileReader(conf));
-		String line;
-		while((line = b.readLine()) != null)
+		else
 		{
-			String[] thing1;
-			String[] thing2;
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
-			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase(toget))
-				{
-					b.close();
-					return thing2[1];
-				}
-			}
+			BufferedWriter fe = new BufferedWriter(new FileWriter(conf, true));
+			fe.write("F:" + key + "=" + value + "\n");
+			fe.close();
 		}
-		b.close();
-		return "ConfigParser.error.NoSuchVar";
 	}
+
 }

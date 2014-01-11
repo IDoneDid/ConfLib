@@ -18,142 +18,113 @@ public class TextParser
 	public static String getStr(String key)
 	{
 		lines = conf.split("\n");
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
-		for(int y = 0; y < lines.length; y++)
+		String line, line2;
+		for(int i = 0; i < lines.length; i++)
 		{
-			line = lines[y];
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			line = lines[i];
+			if(line.contains("S:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("S"))
-				{
-					thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						return thing3[1];
-					}
-				}
+				line2 = line.replace("S:" + key + "=", "");
+				return line2;
 			}
 		}
-		return "ConfigParser.error.NoSuchVar";
+		return "None";
+	}
+	
+	public static void addStr(String key, String value)
+	{
+		conf += ("S:" + key + "=" + value + "\n");
 	}
 	
 	public static boolean getBool(String key)
 	{
 		lines = conf.split("\n");
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
-		for(int y = 0; y < lines.length; y++)
+		String line, line2;
+		for(int i = 0; i < lines.length; i++)
 		{
-			line = lines[y];
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			line = lines[i];
+			if(line.contains("B:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("B"))
+				line2 = line.replace("B:" + key + "=", "");
+				if(line2.equalsIgnoreCase("true"))
 				{
-					thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						if(thing3[1].equalsIgnoreCase("true"))
-						{
-							return true;
-						}
-						else
-						{
-							return false;
-						}
-					}
+					return true;
+				}
+				else
+				{
+					return false;
 				}
 			}
 		}
 		return false;
 	}
 	
+	public static void addBool(String key, boolean value)
+	{
+		conf += ("B:" + key + "=" + value + "\n");
+	}
+	
 	public static int getInt(String key)
 	{
 		lines = conf.split("\n");
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
-		for(int y = 0; y < lines.length; y++)
+		String line, line2;
+		for(int i = 0; i < lines.length; i++)
 		{
-			line = lines[y];
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			line = lines[i];
+			if(line.contains("I:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("I"))
-				{
-					thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						return Integer.parseInt(thing3[1]);
-					}
-				}
+				line2 = line.replace("I:" + key + "=", "");
+				return Integer.parseInt(line2);
 			}
 		}
 		return 0;
 	}
 	
+	public static void addInt(String key, int value)
+	{
+		conf += ("I:" + key + "=" + value + "\n");
+	}
+	
 	public static double getDouble(String key)
 	{
 		lines = conf.split("\n");
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
-		for(int y = 0; y < lines.length; y++)
+		String line, line2;
+		for(int i = 0; i < lines.length; i++)
 		{
-			line = lines[y];
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			line = lines[i];
+			if(line.contains("D:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("D"))
-				{
-					thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						return Double.parseDouble(thing3[1]);
-					}
-				}
+				line2 = line.replace("D:" + key + "=", "");
+				return Double.parseDouble(line2);
 			}
 		}
 		return 0.0;
 	}
 	
+	public static void addDouble(String key, double value)
+	{
+		conf += ("D:" + key + "=" + value + "\n");
+	}
+	
 	public static float getFloat(String key)
 	{
 		lines = conf.split("\n");
-		String line;
-		String[] thing1 = new String[20];
-		String[] thing2 = new String[20];
-		String[] thing3 = new String[20];
-		for(int y = 0; y < lines.length; y++)
+		String line, line2;
+		for(int i = 0; i < lines.length; i++)
 		{
-			line = lines[y];
-			thing1 = line.split("\n");
-			for(int i = 0; i < thing1.length; i++)
+			line = lines[i];
+			if(line.contains("F:" + key + "="))
 			{
-				thing2 = thing1[i].split(":");
-				if(thing2[0].equalsIgnoreCase("F"))
-				{
-					thing3 = thing2[1].split("=");
-					if(thing3[0].equalsIgnoreCase(key))
-					{
-						return Float.parseFloat(thing3[1]);
-					}
-				}
+				line2 = line.replace("F:" + key + "=", "");
+				return Float.parseFloat(line2);
 			}
 		}
 		return 0.0f;
 	}
+	
+	public static void addFloat(String key, float value)
+	{
+		conf += ("F:" + key + "=" + value + "\n");
+	}
+	
 }

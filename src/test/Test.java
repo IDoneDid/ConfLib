@@ -28,13 +28,13 @@ public class Test
 		System.out.println("");
 		System.out.println("[ConfLib] Starting Text Parsing...");
 		System.out.println("------------------------------------------------");
-		start = System.currentTimeMillis();
 		String test =
 		"B:Test=true\n"+
-		"I:Test=1\n"+
-		"S:Test=Potato\n"+
+		"I:Test=42\n"+
+		"S:Test=A String\n"+
 		"D:Test=0.25\n"+
 		"F:Test=0.25f";
+		start = System.currentTimeMillis();
 		TextParser.select(test);
 		System.out.println("[TextParser] Test Boolean Value: " + TextParser.getBool("Test"));
 		System.out.println("[TextParser] Test Integer Value: " + TextParser.getInt("Test"));
