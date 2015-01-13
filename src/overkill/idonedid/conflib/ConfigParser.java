@@ -33,23 +33,20 @@ public class ConfigParser
 		File f = new File(conf);
 		if(!f.exists())
 		{
-			f.createNewFile();
-			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("S:" + key + "=Default\n");
-			fe.close();
+			return "";
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
 		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			if(line.contains("S:" + key + "="))
+			if(line.startsWith("S:" + key + "="))
 			{
-				line2 = line.replace("S:" + key + "=", "");
+				line2 = line.replaceFirst("S:" + key + "=", "");
 				return line2;
 			}
 		}
 		b.close();
-		return "Null";
+		return "";
 	}
 
 	public static void addStr(String key, String value) throws Exception
@@ -83,18 +80,15 @@ public class ConfigParser
 		File f = new File(conf);
 		if(!f.exists())
 		{
-			f.createNewFile();
-			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("B:" + key + "=false\n");
-			fe.close();
+			return false;
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
 		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			if(line.contains("B:" + key + "="))
+			if(line.startsWith("B:" + key + "="))
 			{
-				line2 = line.replace("B:" + key + "=", "");
+				line2 = line.replaceFirst("B:" + key + "=", "");
 				if(line2.equalsIgnoreCase("true"))
 				{
 					b.close();
@@ -142,18 +136,15 @@ public class ConfigParser
 		File f = new File(conf);
 		if(!f.exists())
 		{
-			f.createNewFile();
-			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("I:" + key + "=0\n");
-			fe.close();
+			return 0;
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
 		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			if(line.contains("I:" + key + "="))
+			if(line.startsWith("I:" + key + "="))
 			{
-				line2 = line.replace("I:" + key + "=", "");
+				line2 = line.replaceFirst("I:" + key + "=", "");
 				return Integer.parseInt(line2);
 			}
 		}
@@ -192,18 +183,15 @@ public class ConfigParser
 		File f = new File(conf);
 		if(!f.exists())
 		{
-			f.createNewFile();
-			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("D:" + key + "=0.0\n");
-			fe.close();
+			return 0.0;
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
 		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			if(line.contains("D:" + key + "="))
+			if(line.startsWith("D:" + key + "="))
 			{
-				line2 = line.replace("D:" + key + "=", "");
+				line2 = line.replaceFirst("D:" + key + "=", "");
 				return Double.parseDouble(line2);
 			}
 		}
@@ -242,18 +230,15 @@ public class ConfigParser
 		File f = new File(conf);
 		if(!f.exists())
 		{
-			f.createNewFile();
-			BufferedWriter fe = new BufferedWriter(new FileWriter(conf));
-			fe.write("F:" + key + "=0.0f\n");
-			fe.close();
+			return 0.0f;
 		}
 		BufferedReader b = new BufferedReader(new FileReader(conf));
 		String line, line2;
 		while((line = b.readLine()) != null)
 		{
-			if(line.contains("F:" + key + "="))
+			if(line.startsWith("F:" + key + "="))
 			{
-				line2 = line.replace("F:" + key + "=", "");
+				line2 = line.replaceFirst("F:" + key + "=", "");
 				return Float.parseFloat(line2);
 			}
 		}

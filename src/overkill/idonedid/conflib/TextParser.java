@@ -22,9 +22,9 @@ public class TextParser
 		for(int i = 0; i < lines.length; i++)
 		{
 			line = lines[i];
-			if(line.contains("S:" + key + "="))
+			if(line.startsWith("S:" + key + "="))
 			{
-				line2 = line.replace("S:" + key + "=", "");
+				line2 = line.replaceFirst("S:" + key + "=", "");
 				return line2;
 			}
 		}
@@ -43,9 +43,9 @@ public class TextParser
 		for(int i = 0; i < lines.length; i++)
 		{
 			line = lines[i];
-			if(line.contains("B:" + key + "="))
+			if(line.startsWith("B:" + key + "="))
 			{
-				line2 = line.replace("B:" + key + "=", "");
+				line2 = line.replaceFirst("B:" + key + "=", "");
 				if(line2.equalsIgnoreCase("true"))
 				{
 					return true;
@@ -71,9 +71,9 @@ public class TextParser
 		for(int i = 0; i < lines.length; i++)
 		{
 			line = lines[i];
-			if(line.contains("I:" + key + "="))
+			if(line.startsWith("I:" + key + "="))
 			{
-				line2 = line.replace("I:" + key + "=", "");
+				line2 = line.replaceFirst("I:" + key + "=", "");
 				return Integer.parseInt(line2);
 			}
 		}
@@ -92,9 +92,9 @@ public class TextParser
 		for(int i = 0; i < lines.length; i++)
 		{
 			line = lines[i];
-			if(line.contains("D:" + key + "="))
+			if(line.startsWith("D:" + key + "="))
 			{
-				line2 = line.replace("D:" + key + "=", "");
+				line2 = line.replaceFirst("D:" + key + "=", "");
 				return Double.parseDouble(line2);
 			}
 		}
@@ -113,9 +113,9 @@ public class TextParser
 		for(int i = 0; i < lines.length; i++)
 		{
 			line = lines[i];
-			if(line.contains("F:" + key + "="))
+			if(line.startsWith("F:" + key + "="))
 			{
-				line2 = line.replace("F:" + key + "=", "");
+				line2 = line.replaceFirst("F:" + key + "=", "");
 				return Float.parseFloat(line2);
 			}
 		}
