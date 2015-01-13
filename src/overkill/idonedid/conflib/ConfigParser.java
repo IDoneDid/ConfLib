@@ -1,6 +1,6 @@
 // * * * * * * * * * * * * * * * * * * * * * * \\
 // Author: Overkill                            \\
-// License: Apache v2                          \\
+// License: BSD                                \\
 // Date of Creation: November 30, 2013         \\
 // * * * * * * * * * * * * * * * * * * * * * * \\
 
@@ -23,7 +23,7 @@ public class ConfigParser
 			conf = "config.cfg";
 		}
 	}
-	
+
 	public static String getStr(String key) throws Exception
 	{
 		if (conf == null)
@@ -51,7 +51,7 @@ public class ConfigParser
 		b.close();
 		return "Null";
 	}
-	
+
 	public static void addStr(String key, String value) throws Exception
 	{
 		if (conf == null)
@@ -73,7 +73,7 @@ public class ConfigParser
 			fe.close();
 		}
 	}
-	
+
 	public static boolean getBool(String key) throws Exception
 	{
 		if (conf == null)
@@ -110,7 +110,7 @@ public class ConfigParser
 		b.close();
 		return false;
 	}
-	
+
 	public static void addBool(String key, boolean value) throws Exception
 	{
 		if (conf == null)
@@ -132,7 +132,7 @@ public class ConfigParser
 			fe.close();
 		}
 	}
-	
+
 	public static int getInt(String key) throws Exception
 	{
 		if (conf == null)
@@ -160,7 +160,7 @@ public class ConfigParser
 		b.close();
 		return 0;
 	}
-	
+
 	public static void addInt(String key, int value) throws Exception
 	{
 		if (conf == null)
@@ -182,7 +182,7 @@ public class ConfigParser
 			fe.close();
 		}
 	}
-	
+
 	public static double getDouble(String key) throws Exception
 	{
 		if (conf == null)
@@ -210,7 +210,7 @@ public class ConfigParser
 		b.close();
 		return 0.0;
 	}
-	
+
 	public static void addDouble(String key, double value) throws Exception
 	{
 		if (conf == null)
@@ -232,7 +232,7 @@ public class ConfigParser
 			fe.close();
 		}
 	}
-	
+
 	public static float getFloat(String key) throws Exception
 	{
 		if (conf == null)
@@ -260,7 +260,7 @@ public class ConfigParser
 		b.close();
 		return 0.0f;
 	}
-	
+
 	public static void addInt(String key, float value) throws Exception
 	{
 		if (conf == null)
